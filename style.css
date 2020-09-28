@@ -1,0 +1,19 @@
+body,html{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+body{
+    font-family: 'Segoe UI', Helvetica, Verdana, sans-serif;
+    background-image: linear-gradient(180deg,#dddbd1,#d2dbdc);
+
+}
+.header{
+    height: 130px;
+    width: 100%;
+    background-color: #009688;
+    position: fixed;
+}
