@@ -16,4 +16,18 @@ body{
     width: 100%;
     background-color: #009688;
     position: fixed;
+    z-index: -1;
+}
+.chatBox{
+    height: 93%;
+    width: 95%;
+    margin-top: 30px;
+
+}
+.profileImg{
+    height: 40px;
+    width: 40px;
+}
+.form-round{
+    border-radius: 1rem;
 }
