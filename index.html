@@ -41,7 +41,7 @@
                                             onclick="hideChatList()"></i>
                                     </span>
                                     <div class="dropdown-menu">
-                                        <a href="#" onclick="populateFriendList()" class="dropdown-item" data-toggle ="modal" data-target="#modalFriendList">New Chat</a>
+                                        <a href="#" onclick="populateFriendList()" id="newChat" class="dropdown-item" data-toggle ="modal" data-target="#modalFriendList">New Chat</a>
                                         <a href="#" onclick="signIn()" id="signInLink" class="dropdown-item">Sign IN</a>
                                         <a href="#" onclick="signOut()" id="signOutLink" class="dropdown-item"style="display: none;">Sign Out</a>
                                     </div>
@@ -120,11 +120,11 @@
 
                             </div>
                             <div class="col-2 col-sm-2 col-md-2 col-lg-1">
-                                <img src="/images/profileImage.png" class="rounded-circle profileImg" alt="">
+                                <img src="/images/profileImage.png" id="chatUserImg" class="rounded-circle profileImg" alt="">
                             </div>
                             <div class="col-5 col-sm-5 col-md-5 col-lg-7">
-                                <div class="name">Any name</div>
-                                <div class="under-name">Last seen 10/4/2020</div>
+                                <div class="name" id="chatUserName">Any name</div>
+                                <div class="under-name" id="chatUserSeen">Last seen 10/4/2020</div>
                             </div>
                             <div class="col-4 col-sm-4 col-md-4 col-lg-3 icon">
                                 <i class="fa fa-search"></i>
@@ -169,9 +169,9 @@
                                     class="form-control form-round">
                             </div>
                             <div class="col-2 col-md-1 icon">
-                                <i id="rightArrow" onclick="sendMessage()"></i>
+                                <i id="rightArrow" class="fa fa-arrow-right fa-2x" onclick="sendMessage()"></i>
                             </div>
-                            <div class="col-2 col-md-1 icon">
+                            <div class="col-2  col-md-1 icon">
                                 <i class="fa fa-microphone fa-2x"></i>
                             </div>
                         </div>
