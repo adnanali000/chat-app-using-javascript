@@ -9,11 +9,11 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-       <!-- The core Firebase JS SDK is always required and must be listed first -->
-       <!-- <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script> -->
-       <!-- <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-auth.js"></script> -->
-       <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-       <script src="firebase.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-auth.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+    <script src="firebase.js"></script>
     <title>Chat App</title>
 </head>
 
@@ -26,12 +26,30 @@
                 <div class="card h-100">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-10 col-sm-10 col-md-10">
-                                <img id="profileImg" src="/images/profileImage.png" class="rounded-circle profileImg" alt="">
+                            <div class="col-1 col-sm-1 col-md-1 d-md-none">
+                                <i class="fa fa-arrow-left d-md-none" style="font-size: 20px;cursor: pointer;"
+                                    onclick="hideChatList()"></i>
+                            </div>
+                            <div class="col-9 col-sm-9 col-md-9">
+                                <img id="profileImg" src="/images/profileImage.png" class="rounded-circle profileImg"
+                                    alt="">
                             </div>
                             <div class="col-2 col-sm-2 col-md-2">
-                                <i class="fa fa-arrow-left d-md-none" style="font-size: 20px;cursor: pointer;" onclick="hideChatList()"></i>
+                                <div class="dropleft">
+                                    <span class="dropdown-toggle" data-toggle='dropdown' style="float: right;">
+                                        <i class="fa fa-ellipsis-v icon" style="font-size: 20px;cursor: pointer;"
+                                            onclick="hideChatList()"></i>
+                                    </span>
+                                    <div class="dropdown-menu">
+                                        <a href="#" class="dropdown-item">New Chat</a>
+                                        <a href="#" onclick="signIn()" id="signInLink" class="dropdown-item">Sign IN</a>
+                                        <a href="#" onclick="signOut()" id="signOutLink" class="dropdown-item"
+                                            style="display: none;">Sign Out</a>
+
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                     <ul class="list-group list-group-flush">
@@ -104,49 +122,50 @@
                         </div>
                     </div>
 
-                    <div class="card-body"  id="message">
+                    <div class="card-body" id="message">
                         <div class="row">
                             <div class="col-2 col-sm-1 col-md-1">
                                 <img src="/images/profileImage.png" class="rounded-circle chatImg" alt="">
                             </div>
                             <div class="col-6 col-sm-7 col-md-7">
                                 <p class="chatRecieve">This is my new text
-                                <span class="time float-right"> 2:00 am</span>
-                            </p>
+                                    <span class="time float-right"> 2:00 am</span>
+                                </p>
                             </div>
                         </div>
                         <div class="row justify-content-end">
-                            
+
                             <div class="col-6 col-sm-7 col-md-7">
                                 <p class="chatSent float-right">This is my new text
-                                <span class="time float-right"> 2:00 am</span>
-                            </p>
+                                    <span class="time float-right"> 2:00 am</span>
+                                </p>
                             </div>
                             <div class="col-2 col-sm-1 col-md-1">
                                 <img src="/images/profileImage.png" class="rounded-circle chatImg" alt="">
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-1 col-md-1 icon">
                                 <i class="fa fa-smile-o" style="font-size:36px"></i>
                             </div>
                             <div class="col-7 col-md-9">
-                                <input id="textMessage" onclick="onKeyDown()" type="text" placeholder="type here" class="form-control form-round">
+                                <input id="textMessage" onclick="onKeyDown()" type="text" placeholder="type here"
+                                    class="form-control form-round">
                             </div>
                             <div class="col-2 col-md-1 icon">
-                                <i id="rightArrow"  onclick="sendMessage()"></i>
+                                <i id="rightArrow" onclick="sendMessage()"></i>
                             </div>
                             <div class="col-2 col-md-1 icon">
-                                <i class = "fa fa-microphone fa-2x"></i>
+                                <i class="fa fa-microphone fa-2x"></i>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div id="chatBegin" class="text-center">
-                    <i class = "fa fa-comments mt-5" style="font-size: 250px;"></i>
+                    <i class="fa fa-comments mt-5" style="font-size: 250px;"></i>
                     <h2 class="mt-3">Select your friend</h2>
                     <a href="#" onclick="newChat()" class="d-md-none">New Chat</a>
                     <button onclick="signIn()" class="btn btn-primary">Sign In</button>

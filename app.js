@@ -72,11 +72,73 @@ function onFirebaseStateChanged(){
 
 function onStateChanged(user){
     if (user) {
-        // alert(firebase.auth().currentUser.email + '\n' + firebase.auth().currentUser.displayName);
+
+        let userProfile = {
+            email:'',
+            name:'',
+            photoURL:''
+        }
+        userProfile.email = firebase.auth().currentUser.email;
+        userProfile.name = firebase.auth().currentUser.displayName;
+        userProfile.photoURL = firebase.auth().currentUser.photoURL;
+
+
+        let db = firebase.database().ref('users');
+        let flag = false;
+        db.on('value',function(users){
+            users.forEach(function(data) {
+                let user = data.val();
+                if(user.email === userProfile.email)
+                flag = true;
+
+            })
+            if(flag === false){
+                firebase.database().ref('users').push(userProfile,callback);
+            }
+            else{
+                let profileImg = document.getElementById('profileImg');
+                profileImg.src = firebase.auth().currentUser.photoURL;
+                profileImg.title = firebase.auth().currentUser.displayName;
+        
+                let signInLink = document.getElementById('signInLink');
+                let signOutLink = document.getElementById('signOutLink');
+        
+                signInLink.style = 'display:none';
+                signOutLink.style = '';   
+            }
+        })
+
+
+    }
+    else{
+        let profileImg = document.getElementById('profileImg');
+        profileImg.src = '/images/profileImage.png';
+        profileImg.title = '';
+
+        let signInLink = document.getElementById('signInLink');
+        let signOutLink = document.getElementById('signOutLink');
+
+        signInLink.style = '';
+        signOutLink.style='display:none';
+
+    }
+}
+
+function callback(error) {
+    if(error){
+        alert(error);
+    }
+    else{
+
         let profileImg = document.getElementById('profileImg');
         profileImg.src = firebase.auth().currentUser.photoURL;
         profileImg.title = firebase.auth().currentUser.displayName;
 
+        let signInLink = document.getElementById('signInLink');
+        let signOutLink = document.getElementById('signOutLink');
+
+        signInLink.style = 'display:none';
+        signOutLink.style = '';
     }
 }
 
