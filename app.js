@@ -144,3 +144,42 @@ function callback(error) {
 
 //calling auth state changed
 onFirebaseStateChanged();
+
+
+//populate friend list 
+function populateFriendList() {
+    let lstFriend = document.getElementById('listFriend');
+    lstFriend.innerHTML = `<div class="text-center"> <span class="spinner-border text-primary mt-5" style="width:7rem;height:7rem"> </span> </div>`
+
+    let db = firebase.database().ref('users');
+    let list = '';
+    db.on('value',function(users){
+        if (users.hasChildren()) {
+            list = ` <li class="list-group-item" style="background-color: #f8f8f8;">
+            <input type="text" placeholder="Search or new chat" class="form-control form-round">
+        </li>`
+        }
+
+        users.forEach(function(data){
+            let user = data.val();
+            list += ` <li class="list-group-item list-group-item-action" onclick="start(this)">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="${user.photoURL}" class="rounded-circle usersImg" alt="">
+                </div>
+                <div class="col-md-10" style="cursor: pointer;">
+                    <div class="name">${user.name}</div>
+                </div>
+
+            </div>
+        </li>`
+        });
+
+        lstFriend.innerHTML = list 
+    })
+
+
+
+
+
+}
